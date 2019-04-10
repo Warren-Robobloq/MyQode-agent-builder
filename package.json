@@ -5,8 +5,8 @@
   "main": "main.js",
   "scripts": {
     "install": "electron-rebuild",
-    "start": "electron-webpack dev",
-    "prod": "electron-webpack",
+    "start": "npx electron-webpack dev",
+    "prod": "npx electron-webpack",
     "build": "npm run prod && electron-builder",
     "postinstall": "electron-builder install-app-deps",
     "test:lint": "eslint . --ext .js,.jsx"
