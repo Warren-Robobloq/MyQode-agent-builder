@@ -1,0 +1,102 @@
+{
+  "name": "robobloq-agent",
+  "version": "1.0.2",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "install": "electron-rebuild",
+    "start": "electron-webpack dev",
+    "prod": "electron-webpack",
+    "build": "npm run prod && electron-builder",
+    "postinstall": "electron-builder install-app-deps",
+    "test:lint": "eslint . --ext .js,.jsx"
+  },
+  "build": {
+    "publish": [
+      {
+        "provider": "generic",
+        "url": "http://static.robobloq.cn/apps/pc/agent/"
+      }
+    ],
+    "appId": "com.robobloq.agent",
+    "productName": "Robobloq agent",
+    "copyright": "Copyright © 2018 Robobloq",
+    "directories": {
+      "output": "releases"
+    },
+    "mac": {
+      "target": [
+        "pkg",
+        "zip"
+      ],
+      "icon": "./build/icons/icon.icns",
+      "category": "Utility"
+    },
+    "pkg": {
+      "installLocation": "/Applications",
+      "allowCurrentUserHome": false,
+      "isRelocatable": false,
+      "allowAnywhere": false
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "./build/icons/icon.ico"
+    },
+    "nsis": {
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true,
+      "oneClick": false,
+      "artifactName": "${productName}-Setup-${version}.${ext}"
+    },
+    "linux": {
+      "target": [
+        "deb"
+      ],
+      "icon": "./build/icons",
+      "category": "Utility"
+    },
+    "extraResources": [
+      {
+        "from": "./static",
+        "to": "./static",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "files": [
+      "**/*",
+      "!src/*"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "3.0.10",
+    "electron-builder": "^20.36.2",
+    "electron-rebuild": "^1.8.2",
+    "electron-webpack": "^2.6.1",
+    "eslint": "^5.9.0",
+    "eslint-plugin-react": "^7.11.1",
+    "webpack": "^4.26.0"
+  },
+  "dependencies": {
+    "auto-launch": "^5.0.5",
+    "avr-pizza": "^0.3.5",
+    "avrgirl-arduino": "^3.0.0",
+    "compare-versions": "^3.4.0",
+    "download": "^7.1.0",
+    "express": "^4.16.4",
+    "mkdirp": "^0.5.1",
+    "serialport": "^6.2.0",
+    "socket.io": "^2.1.1",
+    "source-map-support": "^0.5.9"
+  }
+}

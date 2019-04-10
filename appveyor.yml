@@ -1,0 +1,34 @@
+os: Visual Studio 2017
+cache:
+  - node_modules
+environment:
+  GH_TOKEN:
+    secure: r06SD51ffwiCpcBcN1w34aQhfKGTj9itANBkcRNQuUP/P1xjtRM3l3wu5t68+ZDV # your encrypted token from GitHub
+  matrix:
+    - nodejs_version: 8
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - set CI=true
+  - npm install -g npm@latest
+  - npm install -g electron-builder
+  - set PATH=%APPDATA%\npm;%PATH%
+  - npm install
+matrix:
+  fast_finish: true
+build: off
+version: '{build}'
+shallow_clone: true
+clone_depth: 1
+test_script:
+  - electron-builder
+artifacts:
+  - path: 'releases\*.*'
+deploy:
+  provider: GitHub
+  auth_token:
+    secure: r06SD51ffwiCpcBcN1w34aQhfKGTj9itANBkcRNQuUP/P1xjtRM3l3wu5t68+ZDV # your encrypted token from GitHub
+  draft: false
+  prerelease: false
+  on:
+    branch: master                 # release from master branch only
+    appveyor_repo_tag: true        # deploy on tag push only
