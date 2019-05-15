@@ -22,6 +22,8 @@ shallow_clone: true
 clone_depth: 1
 test_script:
   - electron-builder
+after_build:
+  - 7z a Robobloq.agent.zip releases\win-unpacked\**\*
 artifacts:
   - path: 'releases\*.*'
 deploy:
