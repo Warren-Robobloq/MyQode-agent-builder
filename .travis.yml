@@ -18,7 +18,7 @@ cache:
 
 install:
   - nvm install 8
-  - npm install electron-builder -g
+  - npm install electron-builder@20.38.2 -g
   - npm install electron-webpack -g
   - npm install
   - export DISPLAY=':99.0'
